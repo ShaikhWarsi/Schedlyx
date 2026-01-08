@@ -1,11 +1,4 @@
-Good call — this makes **Schedlyx** much easier to build and ship.
-Here is your **README cleaned to remove Google OAuth & Calendar** while keeping everything professional and SaaS-grade.
 
-Paste this into `README.md` 👇
-
----
-
-```md
 <p align="center">
   <h3 align="center">Schedlyx</h3>
 
@@ -230,13 +223,3 @@ If you like this project:
 * Help improve documentation
 
 Schedlyx is built in public and for everyone.
-
-```
-
----
-
-If you want, next I can help you design:
-- The **database schema**
-- The **booking algorithm**
-- Or the **first MVP feature list**
-```
