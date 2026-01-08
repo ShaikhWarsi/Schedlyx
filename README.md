@@ -1,7 +1,12 @@
+Good call — this makes **Schedlyx** much easier to build and ship.
+Here is your **README cleaned to remove Google OAuth & Calendar** while keeping everything professional and SaaS-grade.
 
+Paste this into `README.md` 👇
+
+---
+
+```md
 <p align="center">
-  
-
   <h3 align="center">Schedlyx</h3>
 
   <p align="center">
@@ -21,15 +26,15 @@
 
 ## About Schedlyx
 
-Schedlyx is an open-source platform for scheduling people, managing events, and handling registrations — all in one place.
+Schedlyx is an open-source platform for scheduling people, managing events, and handling registrations in one unified system.
 
 It combines:
-- Personal booking pages
-- Event registration systems
-- Smart scheduling and conflict resolution
-- Group session coordination
+- Personal booking pages  
+- Event registration systems  
+- Smart scheduling and conflict resolution  
+- Group session coordination  
 
-Schedlyx is designed for:
+Schedlyx is built for:
 - Mentors and students  
 - Hackathons and workshops  
 - Interviews and recruiting  
@@ -43,36 +48,35 @@ Instead of juggling multiple tools, Schedlyx lets you manage time, people, and e
 ## Core Features
 
 ### Personal Scheduling
-- Public booking pages for individuals
-- Working hours, buffers, and availability rules
-- Custom booking questions
-- Automatic time zone detection
-- Google Calendar synchronization
+- Public booking pages for individuals  
+- Working hours, buffers, and availability rules  
+- Custom booking questions  
+- Automatic time zone detection  
 
 ### Event Management
-- Create public events (workshops, hackathons, interviews, webinars)
-- Set capacity and registration limits
-- Create multiple sessions inside an event
-- Add speakers, mentors, and hosts
+- Create public events such as workshops, hackathons, interviews, and webinars  
+- Set capacity and registration limits  
+- Create multiple sessions inside an event  
+- Add speakers, mentors, and hosts  
 
 ### Registration System
-- Public registration pages
-- Custom form fields
-- Waitlists and capacity control
-- Confirmation emails
-- Exportable attendee lists
+- Public registration pages  
+- Custom form fields  
+- Waitlists and capacity control  
+- Confirmation emails  
+- Exportable attendee lists  
 
 ### Smart Scheduling Engine
-- Prevents double booking
-- Finds overlapping availability
-- Assigns participants to sessions
-- Balances session loads automatically
+- Prevents double booking  
+- Finds overlapping availability  
+- Assigns participants to sessions  
+- Balances session loads automatically  
 
 ### Live Event Tools
-- QR-code based check-in
-- Attendance tracking
-- Session status dashboard
-- Real-time participant view
+- QR-code based check-in  
+- Attendance tracking  
+- Session status dashboard  
+- Real-time participant view  
 
 ### Public Pages
 Each event and user gets a public page such as:
@@ -100,9 +104,6 @@ These pages include schedules, booking links, registration, and event informatio
 **Backend**
 - Supabase (PostgreSQL, Authentication, Storage, Realtime)
 
-**Integrations**
-- Google Calendar API
-
 **State & Forms**
 - Zustand  
 - React Hook Form  
@@ -117,12 +118,10 @@ These pages include schedules, booking links, registration, and event informatio
 
 ### Prerequisites
 
-- Node.js 18+
-- Supabase account
-- Google Cloud project for Calendar API
+- Node.js 18+  
+- Supabase account  
 
 ### Installation
-
 
 ```bash
 git clone https://github.com/fyiclub-vitb/Schedlyx.git
@@ -132,8 +131,6 @@ npm install
 
 ### Environment Variables
 
-Copy the example file:
-
 ```bash
 cp .env.example .env.local
 ```
@@ -142,7 +139,6 @@ Fill in:
 
 * Supabase URL
 * Supabase anon key
-* Google OAuth credentials
 
 ### Run locally
 
@@ -151,6 +147,36 @@ npm run dev
 ```
 
 Open `http://localhost:5173`
+
+---
+
+## Deployment
+
+### Deploy to Vercel (Recommended)
+
+[Deploy with Vercel](https://vercel.com/new/clone?repository-url=https://github.com/fyiclub-vitb/Schedlyx)
+
+Steps:
+
+1. Click the deploy link
+2. Connect GitHub
+3. Add environment variables
+4. Deploy
+
+### Manual deployment
+
+```bash
+npm i -g vercel
+vercel --prod
+```
+
+Required environment variables:
+
+```
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+VITE_APP_URL=
+```
 
 ---
 
@@ -167,8 +193,6 @@ Open `http://localhost:5173`
 
 Schedlyx is built for the community.
 
-To contribute:
-
 1. Fork the repository
 2. Create a new branch
 3. Make your changes
@@ -183,7 +207,7 @@ See `CONTRIBUTING.md` for full guidelines.
 
 * Team workspaces
 * Advanced analytics
-* Webhooks and API access
+* API integrations
 * Organization accounts
 * White-label deployments
 
@@ -207,3 +231,12 @@ If you like this project:
 
 Schedlyx is built in public and for everyone.
 
+```
+
+---
+
+If you want, next I can help you design:
+- The **database schema**
+- The **booking algorithm**
+- Or the **first MVP feature list**
+```

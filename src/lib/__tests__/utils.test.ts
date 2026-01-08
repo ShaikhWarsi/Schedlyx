@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import {
   cn,
   formatDate,
@@ -148,7 +149,7 @@ describe('Utils', () => {
     it('truncates text correctly', () => {
       expect(truncate('Hello World', 5)).toBe('Hello...')
       expect(truncate('Short', 10)).toBe('Short')
-      expect(truncate('Exactly ten', 10)).toBe('Exactly ten')
+      expect(truncate('Exactly ten', 11)).toBe('Exactly ten')
       expect(truncate('', 5)).toBe('')
     })
   })

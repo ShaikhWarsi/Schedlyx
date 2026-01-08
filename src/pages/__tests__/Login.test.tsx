@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
 import { Login } from '../Login'
@@ -77,7 +78,7 @@ describe('Login', () => {
 
   it('submits form with correct data', async () => {
     const user = userEvent.setup()
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation()
+    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
     
     render(<LoginWithRouter />)
     

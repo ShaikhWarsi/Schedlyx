@@ -1,26 +1,27 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { renderHook } from '@testing-library/react'
 import { useAuth } from '../useAuth'
 import { useAuthStore } from '../../stores/authStore'
 
 // Mock the auth store
-jest.mock('../../stores/authStore')
+vi.mock('../../stores/authStore')
 
-const mockUseAuthStore = useAuthStore as jest.MockedFunction<typeof useAuthStore>
+const mockUseAuthStore = useAuthStore as any
 
 describe('useAuth', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('returns auth state and methods', () => {
     const mockAuthState = {
       user: null,
       loading: false,
-      signIn: jest.fn(),
-      signUp: jest.fn(),
-      signOut: jest.fn(),
-      setUser: jest.fn(),
-      setLoading: jest.fn()
+      signIn: vi.fn(),
+      signUp: vi.fn(),
+      signOut: vi.fn(),
+      setUser: vi.fn(),
+      setLoading: vi.fn()
     }
 
     mockUseAuthStore.mockReturnValue(mockAuthState)
@@ -50,11 +51,11 @@ describe('useAuth', () => {
     const mockAuthState = {
       user: mockUser,
       loading: false,
-      signIn: jest.fn(),
-      signUp: jest.fn(),
-      signOut: jest.fn(),
-      setUser: jest.fn(),
-      setLoading: jest.fn()
+      signIn: vi.fn(),
+      signUp: vi.fn(),
+      signOut: vi.fn(),
+      setUser: vi.fn(),
+      setLoading: vi.fn()
     }
 
     mockUseAuthStore.mockReturnValue(mockAuthState)
@@ -69,11 +70,11 @@ describe('useAuth', () => {
     const mockAuthState = {
       user: null,
       loading: true,
-      signIn: jest.fn(),
-      signUp: jest.fn(),
-      signOut: jest.fn(),
-      setUser: jest.fn(),
-      setLoading: jest.fn()
+      signIn: vi.fn(),
+      signUp: vi.fn(),
+      signOut: vi.fn(),
+      setUser: vi.fn(),
+      setLoading: vi.fn()
     }
 
     mockUseAuthStore.mockReturnValue(mockAuthState)

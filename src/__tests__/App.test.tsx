@@ -1,37 +1,38 @@
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 
 // Mock the pages to avoid complex dependencies
-jest.mock('../pages/Home', () => ({
+vi.mock('../pages/Home', () => ({
   Home: () => <div data-testid="home-page">Home Page</div>
 }))
 
-jest.mock('../pages/Login', () => ({
+vi.mock('../pages/Login', () => ({
   Login: () => <div data-testid="login-page">Login Page</div>
 }))
 
-jest.mock('../pages/Signup', () => ({
+vi.mock('../pages/Signup', () => ({
   Signup: () => <div data-testid="signup-page">Signup Page</div>
 }))
 
-jest.mock('../pages/Dashboard', () => ({
+vi.mock('../pages/Dashboard', () => ({
   Dashboard: () => <div data-testid="dashboard-page">Dashboard Page</div>
 }))
 
-jest.mock('../pages/CreateEvent', () => ({
+vi.mock('../pages/CreateEvent', () => ({
   CreateEvent: () => <div data-testid="create-event-page">Create Event Page</div>
 }))
 
-jest.mock('../pages/PublicEventPage', () => ({
+vi.mock('../pages/PublicEventPage', () => ({
   PublicEventPage: () => <div data-testid="public-event-page">Public Event Page</div>
 }))
 
-jest.mock('../pages/BookingPage', () => ({
+vi.mock('../pages/BookingPage', () => ({
   BookingPage: () => <div data-testid="booking-page">Booking Page</div>
 }))
 
-jest.mock('../pages/AdminEventManager', () => ({
+vi.mock('../pages/AdminEventManager', () => ({
   AdminEventManager: () => <div data-testid="admin-event-manager-page">Admin Event Manager Page</div>
 }))
 

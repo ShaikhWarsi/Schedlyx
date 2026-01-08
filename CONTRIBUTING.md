@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to Schedlyx! This guide will help you get started.
 
-## 🎯 Ways to Contribute
+##  Ways to Contribute
 
 - **Bug Reports**: Found a bug? Let us know!
 - **Feature Requests**: Have an idea? We'd love to hear it!
@@ -10,7 +10,7 @@ Thank you for your interest in contributing to Schedlyx! This guide will help yo
 - **Documentation**: Help improve our docs and guides
 - **Testing**: Help us test new features and find edge cases
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Fork and Clone
 
@@ -42,7 +42,7 @@ git checkout -b feature/your-feature-name
 git checkout -b fix/bug-description
 ```
 
-## 📋 Development Guidelines
+##  Development Guidelines
 
 ### Code Style
 
@@ -101,7 +101,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
 }
 ```
 
-## 🧪 Testing
+##  Testing
 
 ### Running Tests
 
@@ -144,7 +144,7 @@ describe('BookingCard', () => {
 });
 ```
 
-## 📝 Pull Request Process
+##  Pull Request Process
 
 ### Before Submitting
 
@@ -172,7 +172,7 @@ When creating a PR, please include:
 - **Screenshots**: For UI changes
 - **Breaking Changes**: Any breaking changes?
 
-## 🐛 Reporting Issues
+##  Reporting Issues
 
 ### Bug Reports
 
@@ -194,7 +194,7 @@ Please include:
 - **Alternatives**: Any alternative solutions considered?
 - **Additional Context**: Screenshots, mockups, etc.
 
-## 🏗 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -207,17 +207,17 @@ src/
 └── styles/             # Global styles and Tailwind config
 ```
 
-## 🤝 Community Guidelines
+##  Community Guidelines
 
 - Be respectful and inclusive
 - Help others learn and grow
 - Provide constructive feedback
 - Follow our [Code of Conduct](CODE_OF_CONDUCT.md)
 
-## ❓ Questions?
+##  Questions?
 
 - Open an issue for bugs or feature requests
 - Start a discussion for questions or ideas
 - Check existing issues before creating new ones
 
-Thank you for contributing to Schedlyx! 🎉
+Thank you for contributing to Schedlyx! 

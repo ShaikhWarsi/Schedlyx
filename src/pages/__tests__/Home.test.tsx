@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Home } from '../Home'
@@ -12,7 +13,7 @@ describe('Home', () => {
   it('renders the hero section', () => {
     render(<HomeWithRouter />)
     
-    expect(screen.getByText('Smart Scheduling')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Smart Scheduling')
     expect(screen.getByText('Made Simple')).toBeInTheDocument()
     expect(screen.getByText(/The open-source platform that combines/)).toBeInTheDocument()
   })
@@ -33,7 +34,7 @@ describe('Home', () => {
   it('renders feature cards', () => {
     render(<HomeWithRouter />)
     
-    expect(screen.getByText('Smart Scheduling')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'Smart Scheduling' })).toBeInTheDocument()
     expect(screen.getByText('Event Management')).toBeInTheDocument()
     expect(screen.getByText('Calendar Sync')).toBeInTheDocument()
     expect(screen.getByText('Analytics')).toBeInTheDocument()

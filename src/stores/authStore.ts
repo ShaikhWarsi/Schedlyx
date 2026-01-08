@@ -12,7 +12,7 @@ interface AuthState {
   setLoading: (loading: boolean) => void
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
 
@@ -89,34 +89,38 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 }))
 
 // Initialize auth state
-auth.getCurrentUser().then(({ data: { user } }) => {
-  if (user) {
-    useAuthStore.getState().setUser({
-      id: user.id,
-      email: user.email!,
-      firstName: user.user_metadata?.firstName || '',
-      lastName: user.user_metadata?.lastName || '',
-      avatar: user.user_metadata?.avatar,
-      createdAt: user.created_at,
-      updatedAt: user.updated_at || user.created_at
-    })
-  }
-  useAuthStore.getState().setLoading(false)
-})
+if (typeof window !== 'undefined') {
+  auth.getCurrentUser()?.then?.(({ data: { user } }) => {
+    if (user) {
+      useAuthStore.getState().setUser({
+        id: user.id,
+        email: user.email!,
+        firstName: user.user_metadata?.firstName || '',
+        lastName: user.user_metadata?.lastName || '',
+        avatar: user.user_metadata?.avatar,
+        createdAt: user.created_at,
+        updatedAt: user.updated_at || user.created_at
+      })
+    }
+    useAuthStore.getState().setLoading(false)
+  }).catch(() => {
+    useAuthStore.getState().setLoading(false)
+  })
 
-// Listen for auth changes
-auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_IN' && session?.user) {
-    useAuthStore.getState().setUser({
-      id: session.user.id,
-      email: session.user.email!,
-      firstName: session.user.user_metadata?.firstName || '',
-      lastName: session.user.user_metadata?.lastName || '',
-      avatar: session.user.user_metadata?.avatar,
-      createdAt: session.user.created_at,
-      updatedAt: session.user.updated_at || session.user.created_at
-    })
-  } else if (event === 'SIGNED_OUT') {
-    useAuthStore.getState().setUser(null)
-  }
-})
+  // Listen for auth changes
+  auth.onAuthStateChange?.((event, session) => {
+    if (event === 'SIGNED_IN' && session?.user) {
+      useAuthStore.getState().setUser({
+        id: session.user.id,
+        email: session.user.email!,
+        firstName: session.user.user_metadata?.firstName || '',
+        lastName: session.user.user_metadata?.lastName || '',
+        avatar: session.user.user_metadata?.avatar,
+        createdAt: session.user.created_at,
+        updatedAt: session.user.updated_at || session.user.created_at
+      })
+    } else if (event === 'SIGNED_OUT') {
+      useAuthStore.getState().setUser(null)
+    }
+  })
+}

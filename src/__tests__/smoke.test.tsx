@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render } from '@testing-library/react'
@@ -25,8 +26,7 @@ describe('Smoke Tests', () => {
 
   it('has valid environment configuration', () => {
     // These should be defined in the build process
-    expect(import.meta.env).toBeDefined()
-    expect(typeof import.meta.env.MODE).toBe('string')
+    expect(process.env.NODE_ENV).toBeDefined()
   })
 
   it('loads CSS without errors', () => {

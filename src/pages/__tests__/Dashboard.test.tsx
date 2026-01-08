@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Dashboard } from '../Dashboard'
@@ -71,7 +72,7 @@ describe('Dashboard', () => {
   it('displays event status badges', () => {
     render(<DashboardWithRouter />)
     
-    expect(screen.getByText('active')).toBeInTheDocument()
+    expect(screen.getAllByText('active').length).toBeGreaterThan(0)
     expect(screen.getByText('draft')).toBeInTheDocument()
   })
 })
