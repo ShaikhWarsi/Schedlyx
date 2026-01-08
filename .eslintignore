@@ -1,0 +1,10 @@
+dist/
+node_modules/
+.env*
+*.config.js
+*.config.ts
+coverage/
+public/
+.vercel/
+.next/
+build/

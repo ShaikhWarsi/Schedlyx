@@ -104,7 +104,7 @@ const main = async () => {
   success &= checkEnvironmentTemplate();
   
   // Install dependencies
-  success &= runCommand('npm install', 'Installing dependencies');
+  success &= runCommand('npm ci', 'Installing dependencies');
   
   // Run linting
   success &= runCommand('npm run lint', 'Running ESLint');
