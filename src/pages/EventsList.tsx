@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PlusIcon, MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, MagnifyingGlassIcon, FunnelIcon, InboxIcon } from '@heroicons/react/24/outline'
 import { EventCard } from '../components/EventCard'
+import { EmptyState } from '../components/ui/EmptyState'
 import { Event } from '../types'
 
 export function EventsList() {
@@ -238,18 +239,18 @@ export function EventsList() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 bg-white rounded-lg shadow">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No events found</h3>
-          <p className="text-gray-600 mb-4">
-            {searchTerm || filterType !== 'all'
-              ? 'Try adjusting your search or filter criteria'
-              : 'There are no events available at the moment'}
-          </p>
-          <Link to="/create-event" className="btn-primary inline-flex items-center">
-            <PlusIcon className="h-5 w-5 mr-2" />
-            Create Your First Event
-          </Link>
-        </div>
+        <EmptyState
+          title={searchTerm || filterType !== 'all' ? "No matches found" : "No events yet"}
+          description={searchTerm || filterType !== 'all' 
+            ? "Try adjusting your search or filter criteria to find what you're looking for." 
+            : "Get started by creating your first event. It only takes a few minutes!"}
+          icon={InboxIcon}
+          action={{
+            label: "Create your first event",
+            href: "/create-event",
+            icon: PlusIcon
+          }}
+        />
       )}
     </div>
   )

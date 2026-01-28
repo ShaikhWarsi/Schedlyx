@@ -4,9 +4,10 @@ import {
   CalendarDaysIcon, 
   UserGroupIcon, 
   ChartBarIcon,
-  ClockIcon 
+  ClockIcon
 } from '@heroicons/react/24/outline'
 import { EventCard } from '../components/EventCard'
+import { EmptyState } from '../components/ui/EmptyState'
 import { Event } from '../types'
 
 export function Dashboard() {
@@ -80,6 +81,8 @@ export function Dashboard() {
     },
   ]
 
+  const upcomingBookings: any[] = [] // Mock empty bookings
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
@@ -118,16 +121,62 @@ export function Dashboard() {
       <div className="mb-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Recent Events</h2>
-          <Link to="/events" className="text-primary-600 hover:text-primary-700 text-sm font-medium">
-            View all events →
-          </Link>
+          {recentEvents.length > 0 && (
+            <Link to="/events" className="text-primary-600 hover:text-primary-700 text-sm font-medium">
+              View all events →
+            </Link>
+          )}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recentEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+        {recentEvents.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recentEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            title="No events yet"
+            description="Get started by creating your first event type."
+            icon={CalendarDaysIcon}
+            action={{
+              label: "Create your first event",
+              href: "/create-event",
+              icon: PlusIcon
+            }}
+          />
+        )}
+      </div>
+
+      {/* Upcoming Bookings */}
+      <div className="mb-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">Upcoming Bookings</h2>
+          {upcomingBookings.length > 0 && (
+            <Link to="/bookings" className="text-primary-600 hover:text-primary-700 text-sm font-medium">
+              View all bookings →
+            </Link>
+          )}
         </div>
+
+        {upcomingBookings.length > 0 ? (
+          <div className="bg-white shadow overflow-hidden sm:rounded-md">
+            <ul className="divide-y divide-gray-200">
+              {/* Bookings list would go here */}
+            </ul>
+          </div>
+        ) : (
+          <EmptyState
+            title="No upcoming bookings"
+            description="When people book time with you, they'll show up here."
+            icon={UserGroupIcon}
+            action={{
+              label: "Share your booking link",
+              href: "/events",
+              icon: CalendarDaysIcon
+            }}
+          />
+        )}
       </div>
 
       {/* Quick Actions */}
