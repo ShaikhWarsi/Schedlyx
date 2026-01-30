@@ -6,10 +6,8 @@ import {
   TrashIcon, 
   EyeIcon,
   ChartBarIcon,
-  CalendarDaysIcon,
-  InboxIcon
+  CalendarDaysIcon
 } from '@heroicons/react/24/outline'
-import { EmptyState } from '../components/ui/EmptyState'
 
 export function AdminEventManager() {
   const [filter, setFilter] = useState('all') // all, active, draft, past
@@ -187,102 +185,117 @@ export function AdminEventManager() {
 
       {/* Events Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        {filteredEvents.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Event
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Type
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Bookings
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredEvents.map((event) => (
-                  <tr key={event.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Event
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Type
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Bookings
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredEvents.map((event) => (
+                <tr key={event.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div>
                       <div className="text-sm font-medium text-gray-900">{event.title}</div>
-                      <div className="text-sm text-gray-500">Created on {event.createdAt}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(event.status)}`}>
-                        {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{event.bookings} / {event.maxAttendees}</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-                        <div 
-                          className="bg-primary-600 h-2 rounded-full" 
-                          style={{ width: `${(event.bookings / event.maxAttendees) * 100}%` }}
-                        />
+                      <div className="text-sm text-gray-500">
+                        Created {new Date(event.createdAt).toLocaleDateString()}
                       </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex space-x-2">
-                        <Link
-                          to={`/event/${event.id}`}
-                          className="text-primary-600 hover:text-primary-900"
-                          title="View Event"
-                        >
-                          <EyeIcon className="h-4 w-4" />
-                        </Link>
-                        <Link
-                          to={`/edit-event/${event.id}`}
-                          className="text-gray-600 hover:text-gray-900"
-                          title="Edit Event"
-                        >
-                          <PencilIcon className="h-4 w-4" />
-                        </Link>
-                        <Link
-                          to={`/analytics/${event.id}`}
-                          className="text-green-600 hover:text-green-900"
-                          title="View Analytics"
-                        >
-                          <ChartBarIcon className="h-4 w-4" />
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(event.id)}
-                          className="text-red-600 hover:text-red-900"
-                          title="Delete Event"
-                        >
-                          <TrashIcon className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="capitalize text-sm text-gray-900">{event.type}</span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(event.status)}`}>
+                      {event.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {new Date(event.date).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
+                      {event.bookings}/{event.maxAttendees}
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
+                      <div 
+                        className="bg-primary-600 h-2 rounded-full" 
+                        style={{ width: `${(event.bookings / event.maxAttendees) * 100}%` }}
+                      />
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <div className="flex space-x-2">
+                      <Link
+                        to={`/event/${event.id}`}
+                        className="text-primary-600 hover:text-primary-900"
+                        title="View Event"
+                      >
+                        <EyeIcon className="h-4 w-4" />
+                      </Link>
+                      <Link
+                        to={`/edit-event/${event.id}`}
+                        className="text-gray-600 hover:text-gray-900"
+                        title="Edit Event"
+                      >
+                        <PencilIcon className="h-4 w-4" />
+                      </Link>
+                      <Link
+                        to={`/analytics/${event.id}`}
+                        className="text-green-600 hover:text-green-900"
+                        title="View Analytics"
+                      >
+                        <ChartBarIcon className="h-4 w-4" />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(event.id)}
+                        className="text-red-600 hover:text-red-900"
+                        title="Delete Event"
+                      >
+                        <TrashIcon className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        {filteredEvents.length === 0 && (
+          <div className="text-center py-12">
+            <CalendarDaysIcon className="mx-auto h-12 w-12 text-gray-400" />
+            <h3 className="mt-2 text-sm font-medium text-gray-900">No events found</h3>
+            <p className="mt-1 text-sm text-gray-500">
+              {searchTerm ? 'Try adjusting your search terms.' : 'Get started by creating a new event.'}
+            </p>
+            {!searchTerm && (
+              <div className="mt-6">
+                <Link to="/create-event" className="btn-primary">
+                  <PlusIcon className="h-5 w-5 mr-2" />
+                  Create Event
+                </Link>
+              </div>
+            )}
           </div>
-        ) : (
-          <EmptyState
-            title={searchTerm || filter !== 'all' ? "No matches found" : "No events yet"}
-            description={searchTerm || filter !== 'all' 
-              ? "Try adjusting your filters or search terms to find what you're looking for." 
-              : "You haven't created any events yet. Start by creating your first event to begin accepting bookings."}
-            icon={InboxIcon}
-            action={{
-              label: "Create Event",
-              href: "/create-event",
-              icon: PlusIcon
-            }}
-          />
         )}
       </div>
     </div>
